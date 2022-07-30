@@ -556,3 +556,7 @@ require get_template_directory() . '/inc/template-tags.php';
  * @since Twenty Fifteen 1.0
  */
 require get_template_directory() . '/inc/customizer.php';
+
+
+// Include React Functionalities
+require get_template_directory() . '/react-functions.php';
