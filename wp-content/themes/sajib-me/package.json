@@ -14,6 +14,7 @@
     "laravel-mix": "^6.0.49"
   },
   "dependencies": {
-    "@wordpress/scripts": "^23.6.0"
+    "@wordpress/scripts": "^23.6.0",
+    "react-router-dom": "^6.3.0"
   }
 }

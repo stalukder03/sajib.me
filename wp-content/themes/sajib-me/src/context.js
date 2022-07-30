@@ -18,7 +18,7 @@ const AppProvider = ( {children} ) => {
             setMenuItems(response.data.menu)
             setSiteInfo(response.data.site_info)
             setUserProfile(response.data.user_profile)
-            console.log(response.data)
+            // console.log(response.data)
             setIsLoading(false)
         } catch ( error){
             setError(true)
