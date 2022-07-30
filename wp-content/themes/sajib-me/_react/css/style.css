@@ -6273,13 +6273,13 @@ footer#colophon{
     padding: 0;
     width: calc(100% - 80px);
 }
-.site-header.flat ul#fexa-main-menu {
+.site-header.flat ul.menu {
     width: 100%;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
     background: #fff;
     padding: 25px 40px;
 }
-.site-header.flat ul#fexa-main-menu li {
+.site-header.flat ul.menu li {
     display: inline-block;
     margin: 0 25px;
 }

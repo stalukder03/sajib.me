@@ -9,16 +9,27 @@ import Contact from './pages/Contact'
 import Error from './pages/Error'
 
 const App = () => {
-    const location = useLocation()
-    console.log(location.pathname)
+    const {pathname} = useLocation()
     const {isLoading,isError} = useGlobalContext();
     
+
+    useEffect(() => {
+        document.body.id = '';
+        if( pathname === '/portfolio' ){
+            document.body.id = 'no-sidebar';
+        }
+    },[pathname])
+
     if( isLoading ){
         return 'Loading...'
     }
 
     if( isError ){
         return 'Error happend'
+    }
+
+    if( pathname === '/portfolio' ){
+        return <Portfolio/>
     }
 
     return (

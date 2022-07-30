@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import React from 'react'
+import Menu from './Menu'
 import {useGlobalContext} from '../context'
 
 const Sidebar = () => {
@@ -18,26 +19,16 @@ const Sidebar = () => {
             </header>
 
             {/* Menu Items render */}
-            {menuItems && (
-                <div id="secondary" className="secondary">
-                    <div id="widget-area" className="widget-area" role="complementary">
-                        <aside id="nav_menu-2" className="widget widget_nav_menu">
-                            <div className="menu-main-menu-container">
-                                <ul id="menu-main-menu" className="menu">
-                                    {menuItems.map( menu => {
-                                        let linkTo =  menu.title.toLowerCase().replace(/ /g, "-");
-                                        return (
-                                            <li key={menu.id} className={`menu-item menu-item-${menu.id}`}>
-                                                <Link to={(linkTo == 'blog') ? '/' : linkTo }>{menu.title}</Link>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </div>
-                        </aside>
-                    </div>
+            <div id="secondary" className="secondary">
+                <div id="widget-area" className="widget-area" role="complementary">
+                    <aside id="nav_menu-2" className="widget widget_nav_menu">
+                        <div className="menu-main-menu-container">
+                            <Menu/>
+                        </div>
+                    </aside>
                 </div>
-            )}
+            </div>
+            
         </div>
     )
 }
