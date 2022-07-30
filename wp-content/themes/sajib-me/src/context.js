@@ -21,7 +21,7 @@ const AppProvider = ( {children} ) => {
             // console.log(response.data)
             setIsLoading(false)
         } catch ( error){
-            setError(true)
+            setIsError(true)
             console.log(error)
         }
         setIsLoading(false)

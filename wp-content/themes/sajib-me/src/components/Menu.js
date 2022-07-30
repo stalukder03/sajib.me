@@ -11,7 +11,7 @@ const Menu = () => {
                     let linkTo =  menu.title.toLowerCase().replace(/ /g, "-");
                     return (
                         <li key={menu.id} className={`menu-item menu-item-${menu.id}`}>
-                            <Link to={(linkTo == 'blog') ? '/' : linkTo }>{menu.title}</Link>
+                            <Link to={(linkTo == 'blog') ? '/' : ('/'+linkTo) }>{menu.title}</Link>
                         </li>
                     )
                 })}
