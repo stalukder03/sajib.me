@@ -2191,6 +2191,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
+  var location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useLocation)();
+  console.log(location.pathname);
+
   var _useGlobalContext = (0,_context__WEBPACK_IMPORTED_MODULE_1__.useGlobalContext)(),
       isLoading = _useGlobalContext.isLoading,
       isError = _useGlobalContext.isError;
