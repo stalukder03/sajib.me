@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect} from 'react'
 import {useGlobalContext} from './context'
 import Sidebar from './components/Sidebar'
-import Blog from './components/Blog'
-import Portfolio from './components/Portfolio'
-import MyCv from './components/MyCv'
-import Contact from './components/Contact'
-import Error from './components/Error'
+import Blog from './pages/Blog'
+import Portfolio from './pages/Portfolio'
+import MyCv from './pages/MyCv'
+import Contact from './pages/Contact'
+import Error from './pages/Error'
 
 const App = () => {
     const {isLoading,isError} = useGlobalContext();
