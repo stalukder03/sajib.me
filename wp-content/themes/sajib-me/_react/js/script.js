@@ -2181,7 +2181,8 @@ var App = function App() {
       isLoading = _useGlobalContext.isLoading,
       isError = _useGlobalContext.isError,
       menuItems = _useGlobalContext.menuItems,
-      siteInfo = _useGlobalContext.siteInfo;
+      siteInfo = _useGlobalContext.siteInfo,
+      userProfile = _useGlobalContext.userProfile;
 
   if (isLoading) {
     return 'Loading...';
@@ -2205,8 +2206,8 @@ var App = function App() {
             className: "site-branding",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
               className: "profile-pic",
-              src: "http://sajib.local/wp-content/themes/sajib-me/img/propic.jpg",
-              alt: "sajib talukder"
+              src: userProfile.attachment_url,
+              alt: "".concat(siteInfo === null || siteInfo === void 0 ? void 0 : siteInfo.name, " - sajib.me")
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
               className: "site-title",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
@@ -2434,6 +2435,11 @@ var AppProvider = function AppProvider(_ref) {
       siteInfo = _useState8[0],
       setSiteInfo = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      userProfile = _useState10[0],
+      setUserProfile = _useState10[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -2450,25 +2456,27 @@ var AppProvider = function AppProvider(_ref) {
               response = _context.sent;
               setMenuItems(response.data.menu);
               setSiteInfo(response.data.site_info);
+              setUserProfile(response.data.user_profile);
+              console.log(response.data);
               setIsLoading(false);
-              _context.next = 14;
+              _context.next = 16;
               break;
 
-            case 10:
-              _context.prev = 10;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](1);
               setError(true);
               console.log(_context.t0);
 
-            case 14:
+            case 16:
               setIsLoading(false);
 
-            case 15:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 10]]);
+      }, _callee, null, [[1, 12]]);
     }));
 
     return function fetchData() {
@@ -2484,6 +2492,7 @@ var AppProvider = function AppProvider(_ref) {
       isLoading: isLoading,
       isError: isError,
       siteInfo: siteInfo,
+      userProfile: userProfile,
       menuItems: menuItems
     },
     children: children

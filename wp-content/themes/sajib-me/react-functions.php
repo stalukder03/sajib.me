@@ -23,10 +23,36 @@ function get_site_data() {
 		array_push($tempMenu,$new_menu);
 	}
     return [
-		'site_info' => $site_info,
-		'menu'      => $tempMenu
+		'site_info'         => $site_info,
+		'menu'              => $tempMenu,
+		'user_profile'      => get_user_profile()
 	];
 }
+
+
+function get_user_profile($id = 1) {
+    $user_id = $id;
+    $user    = get_user_by( 'id', $user_id );
+    if ( ! $user ) {
+        return new WP_Error( 'mpp_no_user', __( 'User not found.', 'metronet-profile-picture' ), array( 'status' => 404 ) );
+    }
+
+    // Get attachment ID.
+    $profile_post_id   = absint( get_user_option( 'metronet_post_id', $user_id ) );
+    $post_thumbnail_id = get_post_thumbnail_id( $profile_post_id );
+    if ( ! $post_thumbnail_id ) {
+        return new WP_Error( 'mpp_no_profile_picture', __( 'Profile picture not found.', 'metronet-profile-picture' ), array( 'status' => 404 ) );
+    }
+
+    // Get attachment URL.
+    $attachment_url = wp_get_attachment_url( $post_thumbnail_id );
+
+    return array(
+        'attachment_id'  => $post_thumbnail_id,
+        'attachment_url' => $attachment_url,
+    );
+}
+
 
 add_action( 'rest_api_init', function () {
     register_rest_route( 'sajib/me/v1', 'data', array(

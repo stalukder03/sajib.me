@@ -7,4 +7,5 @@
 !/wp-content/themes/sajib-me
 /wp-content/themes/sajib-me/node_modules
 
+#!/wp-content/plugins
 !.gitignore

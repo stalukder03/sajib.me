@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import {useGlobalContext} from './context'
 
 const App = () => {
-    const {isLoading,isError,menuItems,siteInfo} = useGlobalContext();
+    const {isLoading,isError,menuItems,siteInfo,userProfile} = useGlobalContext();
     
     if( isLoading ){
         return 'Loading...'
@@ -18,7 +18,7 @@ const App = () => {
                 <div id="sidebar" className="sidebar">
                     <header id="masthead" className="site-header " role="banner">
                         <div className="site-branding">
-                            <img className="profile-pic" src="http://sajib.local/wp-content/themes/sajib-me/img/propic.jpg" alt="sajib talukder" />
+                            <img className="profile-pic" src={userProfile.attachment_url} alt={`${siteInfo?.name} - sajib.me`} />
                             <h1 className="site-title"><a href="http://sajib.local/" rel="home">{siteInfo?.name}</a></h1>
                             <p className="site-description">{siteInfo?.tag_title}</p>
                             <button className="secondary-toggle">Menu and widgets</button>

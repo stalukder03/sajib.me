@@ -9,6 +9,7 @@ const AppProvider = ( {children} ) => {
     const [isError,setIsError] = useState(false);
     const [menuItems,setMenuItems] = useState([]);
     const [siteInfo,setSiteInfo] = useState([]);
+    const [userProfile,setUserProfile] = useState([]);
 
     const fetchData = async () => {
         setIsLoading(true)
@@ -16,6 +17,8 @@ const AppProvider = ( {children} ) => {
             const response = await Api.get('/data',{});
             setMenuItems(response.data.menu)
             setSiteInfo(response.data.site_info)
+            setUserProfile(response.data.user_profile)
+            console.log(response.data)
             setIsLoading(false)
         } catch ( error){
             setError(true)
@@ -33,6 +36,7 @@ const AppProvider = ( {children} ) => {
             isLoading,
             isError,
             siteInfo,
+            userProfile,
             menuItems
         }}>
             {children}
