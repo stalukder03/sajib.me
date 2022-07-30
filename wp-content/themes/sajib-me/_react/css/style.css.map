@@ -1,0 +1,1 @@
+{"version":3,"file":"_react/css/style.css","mappings":"AAAA;EACI;AACJ,C","sources":["webpack://sajib-me/./src/app.scss"],"sourcesContent":["h1{\n    font-size: 100px;\n}"],"names":[],"sourceRoot":""}

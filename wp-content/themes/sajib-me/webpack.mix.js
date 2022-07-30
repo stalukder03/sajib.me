@@ -13,7 +13,7 @@ mix.options({
 mix.sourceMaps(true, 'source-map');
 
 // SCSS to CSS
-mix.sass( "src/app.scss", "_react/css/sajib-me.css" );
+mix.sass( "src/app.scss", "_react/css/style.css" );
 
 // Scripts to js - React
-mix.js("src/index.js", "_react/js/sajib-me.js").react();
+mix.js("src/index.js", "_react/js/script.js").react();
