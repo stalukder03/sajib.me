@@ -1,4 +1,9 @@
 <?php
+// add order support to default post
+add_action( 'admin_init', 'your_custom_post_order_fn' );
+function your_custom_post_order_fn() {
+    add_post_type_support( 'post', 'page-attributes' );
+}
 
 
 function get_user_profile($id = 1) {
@@ -48,6 +53,33 @@ function get_menu_list() {
     return $tempMenu;
 }
 
+function raw_to_html_output($content){
+    $content = apply_filters( 'the_content', $content );
+    $content = str_replace( ']]>', ']]&gt;', $content );
+    return $content;
+}
+
+function get_posts_list() {
+    $temp_posts = [];
+    $posts = get_posts([
+        'posts' => 'post',
+        'posts_per_page' => -1,
+        'order' => 'ASC',
+        'orderby' => 'menu_order'
+    ]);
+    foreach( $posts as $post ){
+        $new_post = [
+            'id'      => $post->ID,
+            'title'   => $post->post_title,
+            'slug'    => $post->post_name,
+            'date'    => get_the_date('',$post->ID),
+            'content' => raw_to_html_output($post->post_content)
+        ];
+        array_push($temp_posts,$new_post);
+    }
+
+    return $temp_posts;
+}
 function get_site_data() {
 	
 	/**
@@ -56,7 +88,8 @@ function get_site_data() {
     return [
 		'site_info'         => get_site_info(),
 		'menu'              => get_menu_list(),
-		'user_profile'      => get_user_profile()
+		'user_profile'      => get_user_profile(),
+		'posts_list'        => get_posts_list()
 	];
 }
 

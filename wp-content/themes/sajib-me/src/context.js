@@ -10,6 +10,7 @@ const AppProvider = ( {children} ) => {
     const [menuItems,setMenuItems] = useState([]);
     const [siteInfo,setSiteInfo] = useState([]);
     const [userProfile,setUserProfile] = useState([]);
+    const [blogPosts,setBlogPosts] = useState([]);
 
     const fetchData = async () => {
         setIsLoading(true)
@@ -18,6 +19,7 @@ const AppProvider = ( {children} ) => {
             setMenuItems(response.data.menu)
             setSiteInfo(response.data.site_info)
             setUserProfile(response.data.user_profile)
+            setBlogPosts(response.data.posts_list)
             // console.log(response.data)
             setIsLoading(false)
         } catch ( error){
@@ -37,7 +39,8 @@ const AppProvider = ( {children} ) => {
             isError,
             siteInfo,
             userProfile,
-            menuItems
+            menuItems,
+            blogPosts
         }}>
             {children}
         </AppContext.Provider>;

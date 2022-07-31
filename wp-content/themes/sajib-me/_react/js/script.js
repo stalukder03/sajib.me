@@ -2527,6 +2527,11 @@ var AppProvider = function AppProvider(_ref) {
       userProfile = _useState10[0],
       setUserProfile = _useState10[1];
 
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      blogPosts = _useState12[0],
+      setBlogPosts = _useState12[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -2543,27 +2548,28 @@ var AppProvider = function AppProvider(_ref) {
               response = _context.sent;
               setMenuItems(response.data.menu);
               setSiteInfo(response.data.site_info);
-              setUserProfile(response.data.user_profile); // console.log(response.data)
+              setUserProfile(response.data.user_profile);
+              setBlogPosts(response.data.posts_list); // console.log(response.data)
 
               setIsLoading(false);
-              _context.next = 15;
+              _context.next = 16;
               break;
 
-            case 11:
-              _context.prev = 11;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](1);
               setIsError(true);
               console.log(_context.t0);
 
-            case 15:
+            case 16:
               setIsLoading(false);
 
-            case 16:
+            case 17:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 11]]);
+      }, _callee, null, [[1, 12]]);
     }));
 
     return function fetchData() {
@@ -2580,7 +2586,8 @@ var AppProvider = function AppProvider(_ref) {
       isError: isError,
       siteInfo: siteInfo,
       userProfile: userProfile,
-      menuItems: menuItems
+      menuItems: menuItems,
+      blogPosts: blogPosts
     },
     children: children
   });
@@ -2630,14 +2637,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../context */ "./src/context.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
 
 
 
 var Blog = function Blog() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    children: "Blog"
+  var _useGlobalContext = (0,_context__WEBPACK_IMPORTED_MODULE_1__.useGlobalContext)(),
+      blogPosts = _useGlobalContext.blogPosts; // console.log(blogPosts)
+
+
+  return blogPosts && blogPosts.map(function (post) {
+    // console.log(post)
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("article", {
+      id: "post-".concat(post.id),
+      className: "post-".concat(post.id, " post hentry"),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("header", {
+        className: "entry-header",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+          className: "entry-title",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+            to: post.slug,
+            children: post.title
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "entry-content",
+        dangerouslySetInnerHTML: {
+          __html: post.content
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("footer", {
+        className: "entry-footer",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          className: "posted-on",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            className: "screen-reader-text",
+            children: "Posted on "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+            to: post.slug,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("time", {
+              className: "entry-date published",
+              dateTime: post.date,
+              children: post.date
+            })
+          })]
+        })
+      })]
+    }, post.id);
   });
 };
 
