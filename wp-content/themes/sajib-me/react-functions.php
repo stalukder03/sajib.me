@@ -97,6 +97,18 @@ function get_portfolio_list() {
         $demopreview_link    = get_post_meta($portfolio->ID,'demopreview_link',true);
         $screenshot_external = get_post_meta($portfolio->ID,'screenshot_external',true);
 
+
+        $taxonomy = 'project_type';
+        $trm = $wpdb->get_results (  "
+        SELECT tt.term_id, tt.description
+        FROM {$wpdb->prefix}term_relationships AS tr
+        INNER JOIN {$wpdb->prefix}term_taxonomy AS tt
+            ON tr.term_taxonomy_id=tt.term_id
+            AND tt.taxonomy = '{$taxonomy}'
+            WHERE tr.object_id = {$portfolio->ID}
+        " );
+pretty_log('$trm',$trm);
+
         $terms = $wpdb->get_results ( "
         SELECT term_taxonomy_id 
         FROM  $wpdb->term_relationships
