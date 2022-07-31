@@ -81,6 +81,45 @@ function get_posts_list() {
     return $temp_posts;
 }
 
+function get_term_data( $post_id, $taxonomy, $meta_key = null ){
+    global $wpdb;
+
+    if( null !== $meta_key ) {
+        // SELECT tt.term_id, tt.description, t.name, t.slug, tm.meta_value
+        $result = $wpdb->get_results (  "
+        SELECT tt.description, t.name, t.slug, tm.meta_value
+        FROM {$wpdb->prefix}term_relationships AS tr
+        INNER JOIN {$wpdb->prefix}term_taxonomy AS tt
+            ON tr.term_taxonomy_id=tt.term_id
+            AND tt.taxonomy = '{$taxonomy}'
+        INNER JOIN {$wpdb->prefix}terms AS t
+            ON tr.term_order=t.term_order
+            AND tr.term_taxonomy_id = t.term_id
+        INNER JOIN {$wpdb->prefix}termmeta AS tm
+            ON t.term_id=tm.term_id
+            AND tm.meta_key = '{$meta_key}'
+
+            WHERE tr.object_id = {$post_id}
+        " );
+
+    } else {
+        // SELECT tt.term_id, tt.description, t.name, t.slug
+        $result = $wpdb->get_results (  "
+        SELECT t.name
+        FROM {$wpdb->prefix}term_relationships AS tr
+        INNER JOIN {$wpdb->prefix}term_taxonomy AS tt
+            ON tr.term_taxonomy_id=tt.term_id
+            AND tt.taxonomy = '{$taxonomy}'
+        INNER JOIN {$wpdb->prefix}terms AS t
+            ON tr.term_order=t.term_order
+            AND tr.term_taxonomy_id = t.term_id
+            WHERE tr.object_id = {$post_id}
+        " );
+
+    }
+    return $result;
+}
+
 function get_portfolio_list() {
     global $wpdb;
 
@@ -97,75 +136,19 @@ function get_portfolio_list() {
         $demopreview_link    = get_post_meta($portfolio->ID,'demopreview_link',true);
         $screenshot_external = get_post_meta($portfolio->ID,'screenshot_external',true);
 
+        $project_type_term = get_term_data( $portfolio->ID, 'project_type', '_job_duration' );
+        $marketplace_term  = get_term_data( $portfolio->ID, 'marketplace' );
 
-        $taxonomy = 'project_type';
-        $trm = $wpdb->get_results (  "
-        SELECT tt.term_id, tt.description
-        FROM {$wpdb->prefix}term_relationships AS tr
-        INNER JOIN {$wpdb->prefix}term_taxonomy AS tt
-            ON tr.term_taxonomy_id=tt.term_id
-            AND tt.taxonomy = '{$taxonomy}'
-            WHERE tr.object_id = {$portfolio->ID}
-        " );
-pretty_log('$trm',$trm);
+        $project_type = [
+            'slug'        => $project_type_term[0]->slug,
+            'name'        => $project_type_term[0]->name,
+            'description' => $project_type_term[0]->description,
+            'schedule'    => $project_type_term[0]->meta_value
+        ];
 
-        $terms = $wpdb->get_results ( "
-        SELECT term_taxonomy_id 
-        FROM  $wpdb->term_relationships
-            WHERE object_id = $portfolio->ID
-        " );
-        // get term ids
-        $term_ids = [];
-        if( is_array($terms) ){
-            foreach( $terms as $term ){
-                $term_ids[] = $term->term_taxonomy_id;
-            }
-        }else{
-            $term_ids[] = $terms[0]->term_taxonomy_id;
-        }
-
-        $project_type = [];
-        $marketplace = [];
-        // get term taxonomies
-        foreach ( $term_ids as $term_id ){
-            $taxonomy = $wpdb->get_results ( "
-            SELECT term_id, taxonomy, description 
-            FROM  $wpdb->term_taxonomy
-                WHERE term_id = $term_id
-            " );
-            if( $taxonomy[0]->taxonomy == 'project_type' ){
-                
-                $term_name_slug = $wpdb->get_results ( "
-                SELECT name, slug 
-                FROM  $wpdb->terms
-                    WHERE term_id = $term_id
-                " );
-
-                $schedule = $wpdb->get_results ( "
-                SELECT meta_value 
-                FROM  $wpdb->termmeta
-                    WHERE meta_key = '_job_duration'
-                    AND term_id = $term_id
-                " );
-                $project_type = [
-                    'slug'         => $term_name_slug[0]->slug,
-                    'name'         => $term_name_slug[0]->name,
-                    'description'  => $taxonomy[0]->description,
-                    'schedule'     => $schedule[0]->meta_value
-                ];
-            }
-            if( $taxonomy[0]->taxonomy == 'marketplace' ){
-                $term_name_slug = $wpdb->get_results ( "
-                SELECT name, slug 
-                FROM  $wpdb->terms
-                    WHERE term_id = $term_id
-                " );
-                $marketplace = [
-                    'slug'         => $term_name_slug[0]->slug,
-                    'name'         => $term_name_slug[0]->name,
-                ];
-            }
-        }
+        $marketplace = [
+            'name' => $marketplace_term[0]->name
+        ];
         
         $new_post = [
             'id'                 => $portfolio->ID,
