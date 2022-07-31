@@ -11,6 +11,7 @@ const AppProvider = ( {children} ) => {
     const [siteInfo,setSiteInfo] = useState([]);
     const [userProfile,setUserProfile] = useState([]);
     const [blogPosts,setBlogPosts] = useState([]);
+    const [portfolios,setPortfolios] = useState([]);
 
     const fetchData = async () => {
         setIsLoading(true)
@@ -20,6 +21,7 @@ const AppProvider = ( {children} ) => {
             setSiteInfo(response.data.site_info)
             setUserProfile(response.data.user_profile)
             setBlogPosts(response.data.posts_list)
+            setPortfolios(response.data.portfolio_list)
             // console.log(response.data)
             setIsLoading(false)
         } catch ( error){
@@ -40,7 +42,8 @@ const AppProvider = ( {children} ) => {
             siteInfo,
             userProfile,
             menuItems,
-            blogPosts
+            blogPosts,
+            portfolios
         }}>
             {children}
         </AppContext.Provider>;

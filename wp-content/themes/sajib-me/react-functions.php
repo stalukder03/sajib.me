@@ -62,7 +62,7 @@ function raw_to_html_output($content){
 function get_posts_list() {
     $temp_posts = [];
     $posts = get_posts([
-        'posts' => 'post',
+        'post_type' => 'post',
         'posts_per_page' => -1,
         'order' => 'ASC',
         'orderby' => 'menu_order'
@@ -80,6 +80,98 @@ function get_posts_list() {
 
     return $temp_posts;
 }
+
+function get_portfolio_list() {
+    global $wpdb;
+
+    $temp_posts = [];
+    $portfolios = $wpdb->get_results ( "
+    SELECT * 
+    FROM  $wpdb->posts
+        WHERE post_type = 'portfolios'
+        AND post_status = 'publish'
+    " );
+
+    foreach( $portfolios as $portfolio ){
+        $thumbnail_url       = get_the_post_thumbnail_url($portfolio->ID,'full');
+        $demopreview_link    = get_post_meta($portfolio->ID,'demopreview_link',true);
+        $screenshot_external = get_post_meta($portfolio->ID,'screenshot_external',true);
+
+        $terms = $wpdb->get_results ( "
+        SELECT term_taxonomy_id 
+        FROM  $wpdb->term_relationships
+            WHERE object_id = $portfolio->ID
+        " );
+        // get term ids
+        $term_ids = [];
+        if( is_array($terms) ){
+            foreach( $terms as $term ){
+                $term_ids[] = $term->term_taxonomy_id;
+            }
+        }else{
+            $term_ids[] = $terms[0]->term_taxonomy_id;
+        }
+
+        $project_type = [];
+        $marketplace = [];
+        // get term taxonomies
+        foreach ( $term_ids as $term_id ){
+            $taxonomy = $wpdb->get_results ( "
+            SELECT term_id, taxonomy, description 
+            FROM  $wpdb->term_taxonomy
+                WHERE term_id = $term_id
+            " );
+            if( $taxonomy[0]->taxonomy == 'project_type' ){
+                
+                $term_name_slug = $wpdb->get_results ( "
+                SELECT name, slug 
+                FROM  $wpdb->terms
+                    WHERE term_id = $term_id
+                " );
+
+                $schedule = $wpdb->get_results ( "
+                SELECT meta_value 
+                FROM  $wpdb->termmeta
+                    WHERE meta_key = '_job_duration'
+                    AND term_id = $term_id
+                " );
+                $project_type = [
+                    'slug'         => $term_name_slug[0]->slug,
+                    'name'         => $term_name_slug[0]->name,
+                    'description'  => $taxonomy[0]->description,
+                    'schedule'     => $schedule[0]->meta_value
+                ];
+            }
+            if( $taxonomy[0]->taxonomy == 'marketplace' ){
+                $term_name_slug = $wpdb->get_results ( "
+                SELECT name, slug 
+                FROM  $wpdb->terms
+                    WHERE term_id = $term_id
+                " );
+                $marketplace = [
+                    'slug'         => $term_name_slug[0]->slug,
+                    'name'         => $term_name_slug[0]->name,
+                ];
+            }
+        }
+        
+        $new_post = [
+            'id'                 => $portfolio->ID,
+            'title'              => $portfolio->post_title,
+            'demopreview_link'   => $demopreview_link,
+            'thumbnail_url'      => $thumbnail_url ? $thumbnail_url : $screenshot_external,
+            'project_type'       => $project_type,
+            'marketplace'        => $marketplace
+        ];
+        array_push($temp_posts,$new_post);
+
+    }
+    // pretty_log('temp_posts',$temp_posts);
+    
+    return $temp_posts;
+}
+// get_portfolio_list();
+
 function get_site_data() {
 	
 	/**
@@ -89,7 +181,8 @@ function get_site_data() {
 		'site_info'         => get_site_info(),
 		'menu'              => get_menu_list(),
 		'user_profile'      => get_user_profile(),
-		'posts_list'        => get_posts_list()
+		'posts_list'        => get_posts_list(),
+		'portfolio_list'    => get_portfolio_list()
 	];
 }
 
