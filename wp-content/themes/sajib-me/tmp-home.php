@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Home / Rest API  
+ * Template Name: Rest API  
  * 
  */
 // get_header();

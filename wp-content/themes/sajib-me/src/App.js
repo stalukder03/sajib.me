@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect} from 'react'
 import {useGlobalContext} from './context'
 import SharedSidebarLayout from './components/SharedSidebarLayout'
@@ -10,18 +10,8 @@ import Contact from './pages/Contact'
 import Error from './pages/Error'
 
 const App = () => {
-    const {pathname} = useLocation()
     const {isLoading,isError} = useGlobalContext();
     
-
-    useEffect(() => {
-        // adding no-sidebar id to body when pages are portfolio & my-cv because of page layout/style 
-        document.body.id = '';
-        if( (pathname === '/portfolio') || pathname === '/my-cv' ){
-            document.body.id = 'no-sidebar';
-        }
-    },[pathname])
-
     if( isLoading ){
         return 'Loading...'
     }

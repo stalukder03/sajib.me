@@ -2193,21 +2193,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  var _useLocation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useLocation)(),
-      pathname = _useLocation.pathname;
-
   var _useGlobalContext = (0,_context__WEBPACK_IMPORTED_MODULE_1__.useGlobalContext)(),
       isLoading = _useGlobalContext.isLoading,
       isError = _useGlobalContext.isError;
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // adding no-sidebar id to body when pages are portfolio & my-cv because of page layout/style 
-    document.body.id = '';
-
-    if (pathname === '/portfolio' || pathname === '/my-cv') {
-      document.body.id = 'no-sidebar';
-    }
-  }, [pathname]);
 
   if (isLoading) {
     return 'Loading...';
@@ -2432,18 +2420,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var SharedSidebarLayout = function SharedSidebarLayout() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "site",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        id: "content",
-        className: "site-content ",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("main", {
-          id: "main",
-          className: "site-main",
-          role: "main",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Outlet, {})
-        })
-      })]
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "sidebar-layout",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "site",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          id: "content",
+          className: "site-content ",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("main", {
+            id: "main",
+            className: "site-main",
+            role: "main",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Outlet, {})
+          })
+        })]
+      })
     })
   });
 };
