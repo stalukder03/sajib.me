@@ -2336,7 +2336,7 @@ var PortfolioItem = function PortfolioItem(_ref) {
               className: "more-details",
               children: "Details"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "theme-author org",
+              className: "theme-author ".concat(project.marketplace.name === 'WordPress.org' && 'org'),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                 className: "author",
                 children: project.marketplace.name
