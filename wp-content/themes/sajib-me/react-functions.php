@@ -93,8 +93,7 @@ function get_term_data( $post_id, $taxonomy, $meta_key = null ){
             ON tr.term_taxonomy_id=tt.term_id
             AND tt.taxonomy = '{$taxonomy}'
         INNER JOIN {$wpdb->prefix}terms AS t
-            ON tr.term_order=t.term_order
-            AND tr.term_taxonomy_id = t.term_id
+            ON tr.term_taxonomy_id = t.term_id
         INNER JOIN {$wpdb->prefix}termmeta AS tm
             ON t.term_id=tm.term_id
             AND tm.meta_key = '{$meta_key}'
@@ -139,6 +138,7 @@ function get_portfolio_list() {
         $project_type_term = get_term_data( $portfolio->ID, 'project_type', '_job_duration' );
         $marketplace_term  = get_term_data( $portfolio->ID, 'marketplace' );
 
+    pretty_log('temp_posts',$project_type_term);
         $project_type = [
             'slug'        => $project_type_term[0]->slug,
             'name'        => $project_type_term[0]->name,
@@ -161,7 +161,6 @@ function get_portfolio_list() {
         array_push($temp_posts,$new_post);
 
     }
-    // pretty_log('temp_posts',$temp_posts);
     
     return $temp_posts;
 }
