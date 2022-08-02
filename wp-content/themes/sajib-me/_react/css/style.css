@@ -6315,8 +6315,13 @@ footer#colophon{
 textarea.wpcf7-form-control.wpcf7-textarea {
     max-height: 220px;
 }
-h1 {
-  font-size: 100px;
+.entry-content code,
+.entry-content code p {
+  background: #333;
+  color: #fff;
+  display: block;
+  padding: 10px;
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=style.css.map*/

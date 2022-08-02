@@ -1,4 +1,12 @@
 @import '../style.css';
-h1{
-    font-size: 100px;
+
+.entry-content{
+    code,
+    code p{
+        background: #333;
+        color: #fff;
+        display: block;
+        padding: 10px;
+        font-size: 14px;
+    }   
 }
