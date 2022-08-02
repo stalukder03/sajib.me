@@ -2302,7 +2302,9 @@ __webpack_require__.r(__webpack_exports__);
 var PortfolioItem = function PortfolioItem(_ref) {
   var data = _ref.data,
       item = _ref.item;
-  console.log(item);
+  // console.log(item)
+  // const content = data.description.replace(/sssp/g, '<p>').replace(/essp/g, '</p>').replace(/sssul/g, '<ul>').replace(/essul/g, '</ul>').replace(/sssli/g, '<li>').replace(/essli/g, '</li>');
+  var content = data.description.replace(/{p}/g, '<p>').replace(/{pe}/g, '</p>').replace(/{ul}/g, '<ul>').replace(/{ule}/g, '</ul>').replace(/{li}/g, '<li>').replace(/{lie}/g, '</li>');
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "job",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -2313,8 +2315,11 @@ var PortfolioItem = function PortfolioItem(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
           children: data.schedule
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: data.description
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "intro",
+        dangerouslySetInnerHTML: {
+          __html: content
+        }
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "themes",
@@ -2884,7 +2889,7 @@ var Portfolio = function Portfolio() {
 
   var all_proejcts = _toConsumableArray(new Set(portfolios.map(function (item) {
     return item.project_type.slug;
-  }))); // console.log(all_proejcts)
+  }))).reverse(); // console.log(all_proejcts)
 
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {

@@ -138,7 +138,7 @@ function get_portfolio_list() {
         $project_type_term = get_term_data( $portfolio->ID, 'project_type', '_job_duration' );
         $marketplace_term  = get_term_data( $portfolio->ID, 'marketplace' );
 
-    pretty_log('temp_posts',$project_type_term);
+    // pretty_log('temp_posts',$project_type_term);
         $project_type = [
             'slug'        => $project_type_term[0]->slug,
             'name'        => $project_type_term[0]->name,

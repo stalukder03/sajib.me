@@ -4,7 +4,7 @@ import {useGlobalContext} from '../context'
 
 const Portfolio = () => {
   const {portfolios} = useGlobalContext();
-  const all_proejcts = [...new Set(portfolios.map((item) => item.project_type.slug))];
+  const all_proejcts = [...new Set(portfolios.map((item) => item.project_type.slug))].reverse();
     // console.log(all_proejcts)
   return (
     <div className="wrap"> 
