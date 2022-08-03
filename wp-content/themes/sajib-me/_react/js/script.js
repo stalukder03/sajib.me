@@ -2607,6 +2607,11 @@ var AppProvider = function AppProvider(_ref) {
       portfolios = _useState14[0],
       setPortfolios = _useState14[1];
 
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      myCvData = _useState16[0],
+      setMyCvData = _useState16[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var response;
@@ -2625,27 +2630,28 @@ var AppProvider = function AppProvider(_ref) {
               setSiteInfo(response.data.site_info);
               setUserProfile(response.data.user_profile);
               setBlogPosts(response.data.posts_list);
-              setPortfolios(response.data.portfolio_list); // console.log(response.data)
+              setPortfolios(response.data.portfolio_list);
+              setMyCvData(response.data.my_cv_data); // console.log(response.data)
 
               setIsLoading(false);
-              _context.next = 17;
+              _context.next = 18;
               break;
 
-            case 13:
-              _context.prev = 13;
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context["catch"](1);
               setIsError(true);
               console.log(_context.t0);
 
-            case 17:
+            case 18:
               setIsLoading(false);
 
-            case 18:
+            case 19:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 13]]);
+      }, _callee, null, [[1, 14]]);
     }));
 
     return function fetchData() {

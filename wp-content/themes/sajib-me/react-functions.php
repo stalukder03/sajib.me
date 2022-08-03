@@ -193,7 +193,7 @@ function get_site_data() {
 		'user_profile'      => get_user_profile(),
 		'posts_list'        => get_posts_list(),
 		'portfolio_list'    => get_portfolio_list(),
-		'my_cv'             => get_cv_data()
+		'my_cv_data'        => get_cv_data()
 	];
 }
 

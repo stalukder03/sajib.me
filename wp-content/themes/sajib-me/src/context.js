@@ -12,6 +12,7 @@ const AppProvider = ( {children} ) => {
     const [userProfile,setUserProfile] = useState([]);
     const [blogPosts,setBlogPosts] = useState([]);
     const [portfolios,setPortfolios] = useState([]);
+    const [myCvData,setMyCvData] = useState([]);
 
     const fetchData = async () => {
         setIsLoading(true)
@@ -22,6 +23,7 @@ const AppProvider = ( {children} ) => {
             setUserProfile(response.data.user_profile)
             setBlogPosts(response.data.posts_list)
             setPortfolios(response.data.portfolio_list)
+            setMyCvData(response.data.my_cv_data)
             // console.log(response.data)
             setIsLoading(false)
         } catch ( error){
