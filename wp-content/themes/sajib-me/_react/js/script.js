@@ -2193,11 +2193,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  var _useLocation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.useLocation)(),
-      pathname = _useLocation.pathname;
-
-  console.log(pathname);
-
   var _useGlobalContext = (0,_context__WEBPACK_IMPORTED_MODULE_1__.useGlobalContext)(),
       isLoading = _useGlobalContext.isLoading,
       isError = _useGlobalContext.isError;
@@ -2550,6 +2545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "useGlobalContext": () => (/* binding */ useGlobalContext)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _services_Api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services/Api */ "./src/services/Api.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -2575,10 +2571,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var AppContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext();
 
 var AppProvider = function AppProvider(_ref) {
   var children = _ref.children;
+
+  var _useLocation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useLocation)(),
+      pathname = _useLocation.pathname;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2670,6 +2670,13 @@ var AppProvider = function AppProvider(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchData();
   }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (pathname.includes('my-cv')) {
+      document.body.classList.add('my-cv');
+    } else {
+      document.body.classList.remove('my-cv');
+    }
+  }, [pathname]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(AppContext.Provider, {
     value: {
       isLoading: isLoading,
@@ -2678,7 +2685,8 @@ var AppProvider = function AppProvider(_ref) {
       userProfile: userProfile,
       menuItems: menuItems,
       blogPosts: blogPosts,
-      portfolios: portfolios
+      portfolios: portfolios,
+      myCvData: myCvData
     },
     children: children
   });

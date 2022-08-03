@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Api from './services/Api';
 
 const AppContext = React.createContext();
 
 const AppProvider = ( {children} ) => {
+    const {pathname} = useLocation()
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(false);
     const [menuItems,setMenuItems] = useState([]);
@@ -33,9 +34,18 @@ const AppProvider = ( {children} ) => {
         setIsLoading(false)
     }
  
+    
     useEffect(() => {
         fetchData();
     }, [])
+
+    useEffect(()=>{
+        if(pathname.includes('my-cv')){
+            document.body.classList.add('my-cv')
+        }else{
+            document.body.classList.remove('my-cv')
+        }
+    },[pathname])
 
     return <AppContext.Provider 
         value={{
@@ -45,7 +55,8 @@ const AppProvider = ( {children} ) => {
             userProfile,
             menuItems,
             blogPosts,
-            portfolios
+            portfolios,
+            myCvData
         }}>
             {children}
         </AppContext.Provider>;
