@@ -164,7 +164,23 @@ function get_portfolio_list() {
     
     return $temp_posts;
 }
-// get_portfolio_list();
+
+function get_cv_data() {
+    $personal_information = get_field('personal_information', 'user_1');
+    $personal_statement   = get_field('personal_statement', 'user_1');
+    $technology_skills    = get_field('technology_skills', 'user_1');
+    $work_experience      = get_field('work_experience', 'user_1');
+    $education            = get_field('education', 'user_1');
+    $socials              = get_field('socials', 'user_1');
+    return [
+        'personal_information' => $personal_information,
+        'personal_statement'   => $personal_statement,
+        'technology_skills'    => $technology_skills,
+        'work_experience'      => $work_experience,
+        'education'            => $education,
+        'socials'              => $socials
+    ];
+}
 
 function get_site_data() {
 	
@@ -176,7 +192,8 @@ function get_site_data() {
 		'menu'              => get_menu_list(),
 		'user_profile'      => get_user_profile(),
 		'posts_list'        => get_posts_list(),
-		'portfolio_list'    => get_portfolio_list()
+		'portfolio_list'    => get_portfolio_list(),
+		'my_cv'             => get_cv_data()
 	];
 }
 
