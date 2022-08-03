@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
 /*
 Theme Name: Sajib Me
 Theme URI: https://wordpress.org/themes/twentyfifteen/
@@ -6315,6 +6316,253 @@ footer#colophon{
 textarea.wpcf7-form-control.wpcf7-textarea {
     max-height: 220px;
 }
+.my-cv-page {
+  font-family: "Open Sans", Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0.5in auto;
+  box-shadow: 0px 0px 6px #cccccc;
+  padding: 0.5in;
+  line-height: 1.5em;
+  font-size: 14px;
+  color: #34495e;
+}
+.my-cv-page html,
+.my-cv-page body,
+.my-cv-page div,
+.my-cv-page span,
+.my-cv-page applet,
+.my-cv-page object,
+.my-cv-page iframe,
+.my-cv-page h1,
+.my-cv-page h2,
+.my-cv-page h3,
+.my-cv-page h4,
+.my-cv-page h5,
+.my-cv-page h6,
+.my-cv-page p,
+.my-cv-page blockquote,
+.my-cv-page pre,
+.my-cv-page a,
+.my-cv-page abbr,
+.my-cv-page acronym,
+.my-cv-page address,
+.my-cv-page big,
+.my-cv-page cite,
+.my-cv-page code,
+.my-cv-page del,
+.my-cv-page dfn,
+.my-cv-page em,
+.my-cv-page img,
+.my-cv-page ins,
+.my-cv-page kbd,
+.my-cv-page q,
+.my-cv-page s,
+.my-cv-page samp,
+.my-cv-page small,
+.my-cv-page strike,
+.my-cv-page strong,
+.my-cv-page sub,
+.my-cv-page sup,
+.my-cv-page tt,
+.my-cv-page var,
+.my-cv-page b,
+.my-cv-page u,
+.my-cv-page i,
+.my-cv-page center,
+.my-cv-page dl,
+.my-cv-page dt,
+.my-cv-page dd,
+.my-cv-page ol,
+.my-cv-page ul,
+.my-cv-page li,
+.my-cv-page fieldset,
+.my-cv-page form,
+.my-cv-page label,
+.my-cv-page legend,
+.my-cv-page table,
+.my-cv-page caption,
+.my-cv-page tbody,
+.my-cv-page tfoot,
+.my-cv-page thead,
+.my-cv-page tr,
+.my-cv-page th,
+.my-cv-page td,
+.my-cv-page article,
+.my-cv-page aside,
+.my-cv-page canvas,
+.my-cv-page details,
+.my-cv-page embed,
+.my-cv-page figure,
+.my-cv-page figcaption,
+.my-cv-page footer,
+.my-cv-page header,
+.my-cv-page hgroup,
+.my-cv-page main,
+.my-cv-page menu,
+.my-cv-page nav,
+.my-cv-page output,
+.my-cv-page ruby,
+.my-cv-page section,
+.my-cv-page summary,
+.my-cv-page time,
+.my-cv-page mark,
+.my-cv-page audio,
+.my-cv-page video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+.my-cv-page article,
+.my-cv-page aside,
+.my-cv-page details,
+.my-cv-page figcaption,
+.my-cv-page figure,
+.my-cv-page footer,
+.my-cv-page header,
+.my-cv-page hgroup,
+.my-cv-page main,
+.my-cv-page menu,
+.my-cv-page nav,
+.my-cv-page section {
+  display: block;
+}
+.my-cv-page *[hidden] {
+  display: none;
+}
+.my-cv-page ol,
+.my-cv-page ul {
+  list-style: none;
+}
+.my-cv-page blockquote,
+.my-cv-page q {
+  quotes: none;
+}
+.my-cv-page blockquote:before,
+.my-cv-page blockquote:after,
+.my-cv-page q:before,
+.my-cv-page q:after {
+  content: "";
+  content: none;
+}
+.my-cv-page table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.my-cv-page * {
+  box-sizing: border-box;
+}
+.my-cv-page a {
+  color: #34495e;
+  text-decoration: none;
+  line-height: 1.5em;
+}
+.my-cv-page .container {
+  max-width: 1140px;
+  margin: auto;
+}
+.my-cv-page .heading-style {
+  background: #3498db;
+  height: 2px;
+  width: 100%;
+}
+.my-cv-page .section {
+  margin-bottom: 40px;
+}
+.my-cv-page .main-columns {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.my-cv-page .main-columns > div:first-child {
+  width: 20%;
+  text-align: right;
+}
+.my-cv-page .main-columns > div:nth-child(2) {
+  padding-left: 20px;
+  width: 75%;
+}
+.my-cv-page .propic {
+  float: right;
+  background: url("../img/propic.jpg") center center;
+  background-size: cover;
+  height: 100%;
+  width: 150px;
+}
+.my-cv-page ul li {
+  margin-bottom: 10px;
+  width: 100%;
+}
+.my-cv-page ul li:last-child {
+  margin: 0;
+}
+.my-cv-page ul li i {
+  margin-right: 10px;
+  color: #3498db;
+}
+.my-cv-page .title {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.my-cv-page .subtitle {
+  color: #3498db;
+}
+.my-cv-page table {
+  width: 100%;
+}
+.my-cv-page table td {
+  border: 1px solid #dadada;
+  padding: 5px 10px;
+}
+.my-cv-page table td:first-child {
+  border-left: 0;
+}
+.my-cv-page table td:last-child {
+  border-right: 0;
+}
+.my-cv-page .uppercase {
+  text-transform: uppercase;
+}
+.my-cv-page strong,
+.my-cv-page .bold {
+  font-weight: bold;
+}
+.my-cv-page .italic {
+  font-style: italic;
+}
+.my-cv-page .text-right {
+  text-align: right;
+}
+.my-cv-page .text-center {
+  text-align: center;
+}
+.my-cv-page .flex-v-center {
+  display: flex;
+  align-items: center;
+}
+.my-cv-page .text-small {
+  font-size: 11px;
+  line-height: 1.5em;
+}
+.my-cv-page .text-medium {
+  font-size: 13px;
+}
+.my-cv-page sup,
+.my-cv-page .sup {
+  vertical-align: super;
+}
+.my-cv-page b {
+  font-weight: 700;
+}
+.my-cv-page table tr td:first-child {
+  width: 160px;
+}
+.my-cv-page .satement > p {
+  margin-bottom: 10px;
+}
+
 .entry-content code,
 .entry-content code p {
   background: #333;

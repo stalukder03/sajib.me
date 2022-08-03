@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import React, { useState, useEffect} from 'react'
 import {useGlobalContext} from './context'
 import SharedSidebarLayout from './components/SharedSidebarLayout'
@@ -10,6 +10,8 @@ import Contact from './pages/Contact'
 import Error from './pages/Error'
 
 const App = () => {
+  const {pathname} = useLocation()
+  console.log(pathname)
     const {isLoading,isError} = useGlobalContext();
     
     if( isLoading ){
@@ -19,6 +21,7 @@ const App = () => {
     if( isError ){
         return 'Error happend'
     }
+    
 
     return (
         <>
