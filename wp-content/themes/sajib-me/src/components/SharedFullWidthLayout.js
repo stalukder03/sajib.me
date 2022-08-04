@@ -1,20 +1,18 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import React from 'react'
 import Menu from './Menu'
 
 const SharedFullWidthLayout = () => {
   const {pathname} = useLocation()
+  const navigate = useNavigate()
   return (
     <div className="site">
-      { !pathname.includes('xx') ? (
-        <header id="masthead" className="site-header flat" role="banner">
-            <div className="site-branding">
-                <Menu/>
-            </div>
-        </header>
-      ) : 'Back'}
-      
-        <Outlet/>
+      <header id="masthead" className="site-header flat" role="banner">
+        <div className="site-branding">
+          {!pathname.includes('my-cv') ? <Menu/> : <button className="go-back" onClick={() => {navigate(-1) || navigate('/')}}>Go back</button>} 
+        </div>
+      </header>
+      <Outlet/>
     </div>
   )
 }

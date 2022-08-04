@@ -25,7 +25,7 @@ const AppProvider = ( {children} ) => {
             setBlogPosts(response.data.posts_list)
             setPortfolios(response.data.portfolio_list)
             setMyCvData(response.data.my_cv_data)
-            // console.log(response.data)
+            // console.log(response.data.my_cv_data)
             setIsLoading(false)
         } catch ( error){
             setIsError(true)

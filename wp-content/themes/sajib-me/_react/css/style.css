@@ -6486,8 +6486,7 @@ textarea.wpcf7-form-control.wpcf7-textarea {
 }
 .my-cv-page .propic {
   float: right;
-  background: url("../img/propic.jpg") center center;
-  background-size: cover;
+  background-size: cover !important;
   height: 100%;
   width: 150px;
 }
@@ -6563,6 +6562,10 @@ textarea.wpcf7-form-control.wpcf7-textarea {
   margin-bottom: 10px;
 }
 
+body.my-cv {
+  background: transparent;
+}
+
 .entry-content code,
 .entry-content code p {
   background: #333;
@@ -6574,6 +6577,15 @@ textarea.wpcf7-form-control.wpcf7-textarea {
 
 .wrap .job .intro ul {
   list-style: none;
+}
+
+.site .go-back {
+  margin-left: 60px;
+  background: transparent;
+  color: #000;
+  text-transform: capitalize;
+  padding: 0;
+  font-weight: normal;
 }
 
 /*# sourceMappingURL=style.css.map*/

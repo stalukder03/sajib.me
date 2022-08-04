@@ -169,8 +169,8 @@
     }
     .propic {
         float: right;
-        background: url("../img/propic.jpg") center center;
-        background-size: cover;
+        // background: url("http://sajib.local/wp-content/uploads/2020/11/propic.jpg") center center;
+        background-size: cover !important;
         height: 100%;
         width: 150px;
     }

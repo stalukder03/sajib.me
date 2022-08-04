@@ -1,6 +1,9 @@
 @import '../style.css';
 @import './css/my-cv.scss';
 
+body.my-cv{
+    background: transparent;
+}
 .entry-content{
     code,
     code p{
@@ -18,5 +21,15 @@
                 list-style: none;
             }
         }
+    }
+}
+.site{
+    .go-back{
+        margin-left: 60px;
+        background: transparent;
+        color: #000;
+        text-transform: capitalize;
+        padding: 0;
+        font-weight: normal;
     }
 }
