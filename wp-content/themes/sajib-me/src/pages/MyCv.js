@@ -1,8 +1,34 @@
 import React from 'react'
+import { FaPhone, FaMapMarker, FaRegEnvelope, FaGlobe, FaSkype  } from 'react-icons/fa';
 import {useGlobalContext} from '../context'
 
 const MyCv = () => {
   const {siteInfo,userProfile,myCvData:{personal_information, personal_statement,technology_skills,work_experience,education,socials}} = useGlobalContext();
+
+  const getIcon = icon => {
+    switch (icon) {
+      case 'address':
+        return <FaMapMarker/>
+        break;
+    
+      case 'phone':
+        return <FaPhone/>
+        break;
+    
+      case 'email':
+        return <FaRegEnvelope/>
+        break;
+    
+      case 'website':
+        return <FaGlobe/>
+        break;
+    
+      case 'skype':
+        return <FaSkype/>
+        break;
+    }
+  }
+
   return (
     <div className="my-cv-page">
       <section className="personal-information section">
@@ -25,7 +51,7 @@ const MyCv = () => {
                   {personal_information.map((info,i)=>{
                     return (
                       <li key={i}>
-                        <i className={info.icon} />
+                        {getIcon(info.icon)}
                         {info.text}
                       </li>
                     );

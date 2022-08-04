@@ -6587,5 +6587,13 @@ body.my-cv {
   padding: 0;
   font-weight: normal;
 }
+.site .go-back svg {
+  margin-bottom: -3px;
+}
+.site .personal-information ul li svg {
+  margin-right: 10px;
+  color: #3498db;
+  margin-bottom: -2px;
+}
 
 /*# sourceMappingURL=style.css.map*/

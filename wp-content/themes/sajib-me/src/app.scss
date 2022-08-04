@@ -31,5 +31,19 @@ body.my-cv{
         text-transform: capitalize;
         padding: 0;
         font-weight: normal;
+        svg{
+            margin-bottom: -3px;
+        }
+    }
+    .personal-information {
+        ul {
+            li {
+                svg {
+                    margin-right: 10px;
+                    color: #3498db;
+                    margin-bottom: -2px;
+                }
+            }
+        }
     }
 }
