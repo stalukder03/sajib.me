@@ -4144,6 +4144,7 @@ p > video {
 		left: 0;
 		width: 29.4118%;
 		z-index: 0;  
+    	width: calc(50% - 371px);
 	}
 
 	.site {
@@ -4168,7 +4169,7 @@ p > video {
 	}
 
 	.site-main {
-		padding: 8.3333% 0;
+		padding: 80px 0;
 	}
 
 	.site-content {
@@ -6306,6 +6307,8 @@ footer#colophon{
     padding: 10px;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
     margin-bottom: 50px;
+    /* min-width: 270px; */
+    height: 200px;
 }
  /* contact form */
 textarea.wpcf7-form-control.wpcf7-textarea {
