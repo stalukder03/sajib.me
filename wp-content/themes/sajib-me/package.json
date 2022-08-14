@@ -14,6 +14,7 @@
     "laravel-mix": "^6.0.49"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.6.2",
     "@wordpress/scripts": "^23.6.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0"
