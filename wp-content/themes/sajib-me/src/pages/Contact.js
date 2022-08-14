@@ -1,8 +1,52 @@
 import React from 'react'
+import ContactC from '../components/Contact'
 
 const Contact = () => {
+
+  const handleSubmit = () => {
+
+  }
+  
   return (
-    <div>Contact</div>
+    <>
+      <article id="post-40" className="post-40 page type-page status-publish hentry">
+        <header className="entry-header">
+          <h1 className="entry-title">Contact</h1>	
+        </header>{/* .entry-header */}
+        <div className="entry-content">
+          <div role="form" className="wpcf7" id="wpcf7-f39-p40-o1" lang="en-US" dir="ltr">
+            <form className="wpcf7-form init" onSubmit={handleSubmit}>
+              <p>
+                <label> Your name (required)<br />
+                  <span className="wpcf7-form-control-wrap your-name">
+                    <input type="text" name="name" size={40} className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" />
+                  </span>
+                </label>
+              </p>
+              <p>
+                <label> Your email (required)<br />
+                  <span className="wpcf7-form-control-wrap your-email">
+                    <input type="email" name="email" size={40} className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" />
+                  </span>
+                </label>
+              </p>
+              <p>
+                <label> Subject (required)<br />
+                  <span className="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" size={40} className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" />
+                  </span>
+                </label>
+              </p>
+              <p>
+                <label> Your message (optional)<br />
+                  <span className="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols={40} rows={10} className="wpcf7-form-control wpcf7-textarea" /></span>
+                </label>
+              </p>
+              <p><input type="submit" defaultValue="Submit" className="wpcf7-form-control wpcf7-submit" /><span className="ajax-loader" /></p>
+            </form>
+          </div>
+        </div>{/* .entry-content */}
+      </article>
+    </>
   )
 }
 
