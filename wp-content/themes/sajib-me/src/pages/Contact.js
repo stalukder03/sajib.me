@@ -4,15 +4,29 @@ import emailjs from '@emailjs/browser';
 const Contact = () => {
   const form = useRef();
 
+  const validation = (param) => {
+    if( !param ){
+      console.log(param)
+      alert(`${param} can't be empty. Please write your ${param}`)
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    let name    = form.current.name.value;
+    let email   = form.current.email.value;
+    let subject = form.current.subject.value;
+    let message = form.current.message.value;
 
-    emailjs.sendForm('service_m7035xq', 'template_jh30svr', form.current, 'kkv8aCASoSUClT18O')
-      .then((result) => {
+    if( name && email && subject && message ){
+      document.querySelector('.ajax-loader').classList.add('show');
+      emailjs.sendForm('service_m7035xq', 'template_jh30svr', form.current, 'kkv8aCASoSUClT18O')
+        .then((result) => {
           console.log(result.text);
-      }, (error) => {
+        }, (error) => {
           console.log(error.text);
-      });
+        });
+    }
   }
 
   return (
@@ -22,34 +36,39 @@ const Contact = () => {
           <h1 className="entry-title">Contact</h1>	
         </header>{/* .entry-header */}
         <div className="entry-content">
-          <div className="wpcf7" id="wpcf7-f39-p40-o1" lang="en-US" dir="ltr">
-            <form ref={form} className="wpcf7-form init" onSubmit={handleSubmit}>
+          <div className="contact-form">
+            <form ref={form} onSubmit={handleSubmit}>
               <p>
                 <label> Your name (required)<br />
-                  <span className="wpcf7-form-control-wrap your-name">
-                    <input type="text" name="name" size={40} className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" />
+                  <span>
+                    <input type="text" name="name" size={40}/>
                   </span>
                 </label>
               </p>
               <p>
                 <label> Your email (required)<br />
-                  <span className="wpcf7-form-control-wrap your-email">
-                    <input type="email" name="email" size={40} className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" />
+                  <span>
+                    <input type="email" name="email" size={40}/>
                   </span>
                 </label>
               </p>
               <p>
                 <label> Subject (required)<br />
-                  <span className="wpcf7-form-control-wrap your-subject"><input type="text" name="subject" size={40} className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" />
+                  <span>
+                    <input type="text" name="subject" size={40}/>
                   </span>
                 </label>
               </p>
               <p>
                 <label> Your message (optional)<br />
-                  <span className="wpcf7-form-control-wrap your-message"><textarea name="message" cols={40} rows={10} className="wpcf7-form-control wpcf7-textarea" /></span>
+                  <span>
+                    <textarea name="message" cols={40} rows={7}/></span>
                 </label>
               </p>
-              <p><input type="submit" value="Submit" className="wpcf7-form-control wpcf7-submit" /></p>
+              <p>
+                <input type="submit" value="Submit"/>
+                <span className="ajax-loader"></span>
+              </p>
             </form>
           </div>
         </div>{/* .entry-content */}

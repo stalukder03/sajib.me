@@ -3086,13 +3086,28 @@ __webpack_require__.r(__webpack_exports__);
 var Contact = function Contact() {
   var form = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
 
+  var validation = function validation(param) {
+    if (!param) {
+      console.log(param);
+      alert("".concat(param, " can't be empty. Please write your ").concat(param));
+    }
+  };
+
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__["default"].sendForm('service_m7035xq', 'template_jh30svr', form.current, 'kkv8aCASoSUClT18O').then(function (result) {
-      console.log(result.text);
-    }, function (error) {
-      console.log(error.text);
-    });
+    var name = form.current.name.value;
+    var email = form.current.email.value;
+    var subject = form.current.subject.value;
+    var message = form.current.message.value;
+
+    if (name && email && subject && message) {
+      document.querySelector('.ajax-loader').classList.add('show');
+      _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__["default"].sendForm('service_m7035xq', 'template_jh30svr', form.current, 'kkv8aCASoSUClT18O').then(function (result) {
+        console.log(result.text);
+      }, function (error) {
+        console.log(error.text);
+      });
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -3108,68 +3123,57 @@ var Contact = function Contact() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "entry-content",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "wpcf7",
-          id: "wpcf7-f39-p40-o1",
-          lang: "en-US",
-          dir: "ltr",
+          className: "contact-form",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
             ref: form,
-            className: "wpcf7-form init",
             onSubmit: handleSubmit,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
                 children: [" Your name (required)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "wpcf7-form-control-wrap your-name",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     type: "text",
                     name: "name",
-                    size: 40,
-                    className: "wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                    size: 40
                   })
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
                 children: [" Your email (required)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "wpcf7-form-control-wrap your-email",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     type: "email",
                     name: "email",
-                    size: 40,
-                    className: "wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email"
+                    size: 40
                   })
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
                 children: [" Subject (required)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "wpcf7-form-control-wrap your-subject",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     type: "text",
                     name: "subject",
-                    size: 40,
-                    className: "wpcf7-form-control wpcf7-text wpcf7-validates-as-required"
+                    size: 40
                   })
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
                 children: [" Your message (optional)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "wpcf7-form-control-wrap your-message",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
                     name: "message",
                     cols: 40,
-                    rows: 10,
-                    className: "wpcf7-form-control wpcf7-textarea"
+                    rows: 7
                   })
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                 type: "submit",
-                value: "Submit",
-                className: "wpcf7-form-control wpcf7-submit"
-              })
+                value: "Submit"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                className: "ajax-loader"
+              })]
             })]
           })
         })

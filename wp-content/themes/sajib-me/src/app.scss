@@ -50,6 +50,49 @@ body.my-cv{
             }
         }
     }
+    .contact-form {
+        .ajax-loader {
+            visibility: hidden;
+            display: inline-block;
+            background-color: #23282d;
+            opacity: 0.75;
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 100%;
+            padding: 0;
+            margin: 0 24px;
+            position: relative;
+            &:before {
+                content: '';
+                position: absolute;
+                background-color: #fbfbfc;
+                top: 4px;
+                left: 4px;
+                width: 6px;
+                height: 6px;
+                border: none;
+                border-radius: 100%;
+                transform-origin: 8px 8px;
+                animation-name: spin;
+                animation-duration: 1000ms;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+            }
+            &.show{
+                visibility: visible;
+            }
+        }
+    }
+
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 // @media screen and (min-width: 1917px) {
 //     .widget_nav_menu{
