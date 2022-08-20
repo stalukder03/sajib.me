@@ -52,7 +52,6 @@ body.my-cv{
     }
     .contact-form {
         .ajax-loader {
-            visibility: hidden;
             display: inline-block;
             background-color: #23282d;
             opacity: 0.75;
@@ -79,9 +78,20 @@ body.my-cv{
                 animation-timing-function: linear;
                 animation-iteration-count: infinite;
             }
-            &.show{
-                visibility: visible;
+        }
+        #msg{
+            margin-bottom: 0;
+            &.success{
+                color: green;
             }
+            &.failed{
+                color: red;
+            }
+        }
+        .error-msg {
+            font-size: 14px;
+            font-style: italic;
+            color: red;
         }
     }
 

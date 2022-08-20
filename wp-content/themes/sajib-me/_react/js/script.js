@@ -3077,6 +3077,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emailjs/browser */ "./node_modules/@emailjs/browser/es/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -3084,29 +3102,108 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Contact = function Contact() {
-  var form = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var submitBtn = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
 
-  var validation = function validation(param) {
-    if (!param) {
-      console.log(param);
-      alert("".concat(param, " can't be empty. Please write your ").concat(param));
-    }
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    subject: '',
+    name: '',
+    email: '',
+    message: ''
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    subject: false,
+    name: false,
+    email: false,
+    message: false
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      error = _useState4[0],
+      setError = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    type: '',
+    text: ''
+  }),
+      _useState6 = _slicedToArray(_useState5, 2),
+      msg = _useState6[0],
+      setMsg = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      loading = _useState8[0],
+      setLoading = _useState8[1];
+
+  var handleOnChange = function handleOnChange(e) {
+    setData(_objectSpread(_objectSpread({}, data), {}, _defineProperty({}, e.target.name, e.target.value)));
+    setError(_objectSpread(_objectSpread({}, error), {}, _defineProperty({}, e.target.name, e.target.value != '' && false)));
   };
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    var name = form.current.name.value;
-    var email = form.current.email.value;
-    var subject = form.current.subject.value;
-    var message = form.current.message.value;
+    setLoading(true);
+    submitBtn.current.setAttribute('disabled', '');
 
-    if (name && email && subject && message) {
-      document.querySelector('.ajax-loader').classList.add('show');
-      _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__["default"].sendForm('service_m7035xq', 'template_jh30svr', form.current, 'kkv8aCASoSUClT18O').then(function (result) {
-        console.log(result.text);
+    if (data.name && data.email && data.subject && data.message) {
+      _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__["default"].send('service_m7035xq', 'template_jh30svr', data, 'kkv8aCASoSUClT18O').then(function (result) {
+        if (result.text === 'OK') {
+          setData({
+            subject: '',
+            name: '',
+            email: '',
+            message: ''
+          });
+          setLoading(false);
+          setMsg({
+            type: 'success',
+            text: 'Email sent successfully.'
+          });
+          setTimeout(function () {
+            setMsg({
+              type: '',
+              text: ''
+            });
+            submitBtn.current.removeAttribute('disabled');
+          }, 1500);
+        } else {
+          setMsg({
+            type: 'failed',
+            text: 'Something went wrong, please try again.'
+          });
+          setTimeout(function () {
+            setMsg({
+              type: '',
+              text: ''
+            });
+            submitBtn.current.removeAttribute('disabled');
+          }, 1500);
+        }
       }, function (error) {
+        setMsg({
+          type: 'failed',
+          text: 'Something went wrong, please try again.'
+        });
+        setTimeout(function () {
+          setMsg({
+            type: '',
+            text: ''
+          });
+          submitBtn.current.removeAttribute('disabled');
+        }, 1500);
         console.log(error.text);
       });
+    } else {
+      setError(_objectSpread(_objectSpread({}, error), {}, {
+        name: data.name == '' && true,
+        email: data.email == '' && true,
+        subject: data.subject == '' && true,
+        message: data.message == '' && true
+      }));
+      setLoading(false);
+      submitBtn.current.removeAttribute('disabled');
     }
   };
 
@@ -3125,7 +3222,6 @@ var Contact = function Contact() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "contact-form",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-            ref: form,
             onSubmit: handleSubmit,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
@@ -3133,8 +3229,13 @@ var Contact = function Contact() {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     type: "text",
                     name: "name",
-                    size: 40
+                    size: 40,
+                    onChange: handleOnChange,
+                    value: data.name
                   })
+                }), error.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                  className: "error-msg",
+                  children: "Name can't be empty."
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
@@ -3143,8 +3244,13 @@ var Contact = function Contact() {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     type: "email",
                     name: "email",
-                    size: 40
+                    size: 40,
+                    onChange: handleOnChange,
+                    value: data.email
                   })
+                }), error.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                  className: "error-msg",
+                  children: "Email can't be empty."
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
@@ -3153,8 +3259,13 @@ var Contact = function Contact() {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     type: "text",
                     name: "subject",
-                    size: 40
+                    size: 40,
+                    onChange: handleOnChange,
+                    value: data.subject
                   })
+                }), error.subject && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                  className: "error-msg",
+                  children: "Subject can't be empty."
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
@@ -3163,17 +3274,28 @@ var Contact = function Contact() {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
                     name: "message",
                     cols: 40,
-                    rows: 7
+                    rows: 7,
+                    onChange: handleOnChange,
+                    value: data.message,
+                    children: " "
                   })
+                }), error.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+                  className: "error-msg",
+                  children: "Message can't be empty."
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                ref: submitBtn,
                 type: "submit",
                 value: "Submit"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              }), loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                 className: "ajax-loader"
               })]
+            }), msg && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+              id: "msg",
+              className: msg.type,
+              children: msg.text
             })]
           })
         })

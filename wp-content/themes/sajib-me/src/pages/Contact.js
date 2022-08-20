@@ -1,31 +1,57 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const form = useRef();
+  const submitBtn = useRef()
+  const [data,setData] = useState({subject:'', name:'', email:'', message:''})
+  const [error,setError] = useState({subject:false, name:false, email:false, message:false})
+  const [msg,setMsg] = useState({type:'',text:''})
+  const [loading,setLoading] = useState(false)
 
-  const validation = (param) => {
-    if( !param ){
-      console.log(param)
-      alert(`${param} can't be empty. Please write your ${param}`)
-    }
+  const handleOnChange = e => {
+    setData({...data,[e.target.name]:e.target.value})
+    setError({...error,[e.target.name]:(e.target.value != '') && false})
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let name    = form.current.name.value;
-    let email   = form.current.email.value;
-    let subject = form.current.subject.value;
-    let message = form.current.message.value;
-
-    if( name && email && subject && message ){
-      document.querySelector('.ajax-loader').classList.add('show');
-      emailjs.sendForm('service_m7035xq', 'template_jh30svr', form.current, 'kkv8aCASoSUClT18O')
+    setLoading(true)
+    submitBtn.current.setAttribute('disabled','')
+    if( data.name && data.email && data.subject && data.message ){
+      emailjs.send('service_m7035xq', 'template_jh30svr', data, 'kkv8aCASoSUClT18O')
         .then((result) => {
-          console.log(result.text);
+          if( result.text === 'OK' ){
+            setData({subject:'', name:'', email:'', message:''})
+            setLoading(false)
+            setMsg({type:'success',text:'Email sent successfully.'})
+            setTimeout(()=>{
+              setMsg({type:'',text:''})
+              submitBtn.current.removeAttribute('disabled')
+            },1500)
+          }else{
+            setMsg({type:'failed',text:'Something went wrong, please try again.'})
+            setTimeout(()=>{
+              setMsg({type:'',text:''})
+              submitBtn.current.removeAttribute('disabled')
+            },1500)
+          }
         }, (error) => {
+          setMsg({type:'failed',text:'Something went wrong, please try again.'})
+          setTimeout(()=>{
+            setMsg({type:'',text:''})
+            submitBtn.current.removeAttribute('disabled')
+          },1500)
           console.log(error.text);
         });
+    }else{
+      setError({...error,
+        name:((data.name=='') && true),
+        email:((data.email=='') && true),
+        subject:((data.subject=='') && true),
+        message:((data.message=='') && true)
+      })
+      setLoading(false)
+      submitBtn.current.removeAttribute('disabled')
     }
   }
 
@@ -37,38 +63,45 @@ const Contact = () => {
         </header>{/* .entry-header */}
         <div className="entry-content">
           <div className="contact-form">
-            <form ref={form} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <p>
                 <label> Your name (required)<br />
                   <span>
-                    <input type="text" name="name" size={40}/>
+                    <input type="text" name="name" size={40} onChange={handleOnChange} value={data.name}/>
                   </span>
+                  {error.name && <span className="error-msg">Name can't be empty.</span>}
                 </label>
               </p>
               <p>
                 <label> Your email (required)<br />
                   <span>
-                    <input type="email" name="email" size={40}/>
+                    <input type="email" name="email" size={40} onChange={handleOnChange} value={data.email}/>
                   </span>
+                  {error.email && <span className="error-msg">Email can't be empty.</span>}
                 </label>
               </p>
               <p>
                 <label> Subject (required)<br />
                   <span>
-                    <input type="text" name="subject" size={40}/>
+                    <input type="text" name="subject" size={40} onChange={handleOnChange} value={data.subject}/>
                   </span>
+                  {error.subject && <span className="error-msg">Subject can't be empty.</span>}
                 </label>
               </p>
               <p>
                 <label> Your message (optional)<br />
                   <span>
-                    <textarea name="message" cols={40} rows={7}/></span>
+                    <textarea name="message" cols={40} rows={7} onChange={handleOnChange} value={data.message}> </textarea>
+                  </span>
+                  {error.message && <span className="error-msg">Message can't be empty.</span>}
                 </label>
               </p>
               <p>
-                <input type="submit" value="Submit"/>
-                <span className="ajax-loader"></span>
+                <input ref={submitBtn} type="submit" value="Submit"/>
+                {loading && <span className="ajax-loader"></span>}
               </p>
+              {msg && <p id="msg" className={msg.type}>{msg.text}</p>}
+              
             </form>
           </div>
         </div>{/* .entry-content */}

@@ -551,14 +551,14 @@ input[type="submit"] {
 	text-transform: uppercase;
 }
 
+/* button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus  */
 button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
-input[type="submit"]:hover,
-button:focus,
-input[type="button"]:focus,
-input[type="reset"]:focus,
-input[type="submit"]:focus {
+input[type="submit"]:hover{
 	background-color: #707070;
 	background-color: rgba(51, 51, 51, 0.7);
 	outline: 0;
@@ -6798,7 +6798,6 @@ body.my-cv {
   margin-bottom: -2px;
 }
 .site .contact-form .ajax-loader {
-  visibility: hidden;
   display: inline-block;
   background-color: #23282d;
   opacity: 0.75;
@@ -6830,8 +6829,19 @@ body.my-cv {
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
 }
-.site .contact-form .ajax-loader.show {
-  visibility: visible;
+.site .contact-form #msg {
+  margin-bottom: 0;
+}
+.site .contact-form #msg.success {
+  color: green;
+}
+.site .contact-form #msg.failed {
+  color: red;
+}
+.site .contact-form .error-msg {
+  font-size: 14px;
+  font-style: italic;
+  color: red;
 }
 
 @-webkit-keyframes spin {
