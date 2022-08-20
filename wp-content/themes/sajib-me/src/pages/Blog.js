@@ -12,7 +12,8 @@ const Blog = () => {
           <article key={post.id} id={`post-${post.id}`} className={`post-${post.id} post hentry`}>
             <header className="entry-header">
               <h2 className="entry-title">
-                <Link to={post.slug}>{post.title}</Link>
+                {post.title}
+                {/* <Link to={post.slug}>{post.title}</Link> */}
               </h2>	
             </header>
 
