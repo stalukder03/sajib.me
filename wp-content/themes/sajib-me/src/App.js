@@ -12,7 +12,7 @@ import Error from './pages/Error'
 
 const App = () => {
     const {isLoading,isError} = useGlobalContext();
-    
+
     if( isLoading ){
         return <Loading/>
     }
