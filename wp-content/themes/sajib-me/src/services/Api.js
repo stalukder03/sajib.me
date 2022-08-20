@@ -1,8 +1,9 @@
 import Axios from 'axios';
 
-let path = 'sajib.local'
-if(location.hostname == 'sajib.me'){
-    path = 'sajib.me';
+let path = 'sajib.local';
+
+if( location.hostname != 'sajib.local'){
+    path = 'sajib.me'
 }
 
 const Api = Axios.create({

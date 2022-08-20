@@ -33,6 +33,8 @@ function get_user_profile($id = 1) {
 function get_site_info() {
     return [
 		'name'      => get_bloginfo('name'),
+		'site_url'  => site_url(),
+		'domain'    => $_SERVER['SERVER_NAME'],
 		'tag_title' => get_bloginfo('description')
 	];
 }

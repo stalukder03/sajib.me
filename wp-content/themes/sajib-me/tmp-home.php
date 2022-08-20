@@ -6,10 +6,10 @@
 // get_header();
 
 $path = get_template_directory_uri();
-if($_SERVER['SERVER_NAME'] == 'sajib.me' ){
+if($_SERVER['SERVER_NAME'] != 'sajib.local' ){
     $path = 'http://sajib.me';
 }
-?> 
+// ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>

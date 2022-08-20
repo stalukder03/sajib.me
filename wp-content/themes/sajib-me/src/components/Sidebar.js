@@ -12,7 +12,7 @@ const Sidebar = () => {
             <header id="masthead" className="site-header " role="banner">
                 <div className="site-branding">
                     <img className="profile-pic" src={userProfile.attachment_url} alt={`${siteInfo?.name} - sajib.me`} />
-                    <h1 className="site-title"><a href="http://sajib.local/" rel="home">{siteInfo?.name}</a></h1>
+                    <h1 className="site-title"><a href={siteInfo?.site_url} rel="home">{siteInfo?.name}</a></h1>
                     <p className="site-description">{siteInfo?.tag_title}</p>
                     <button className="secondary-toggle">Menu and widgets</button>
                 </div>
