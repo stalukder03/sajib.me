@@ -4,6 +4,11 @@
  * 
  */
 // get_header();
+
+$path = get_template_directory_uri();
+if($_SERVER['SERVER_NAME'] == 'sajib.com' ){
+    $path = 'http://sajib.com';
+}
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +17,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajib React</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/_react/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $path; ?>/_react/css/style.css">
 </head>
 <body>
     <div id="__react_sajib_me"></div>
-    <script src="<?php echo get_template_directory_uri(); ?>/_react/js/script.js"></script>
+    <script src="<?php echo $path; ?>/_react/js/script.js"></script>
 </body>
 </html>
