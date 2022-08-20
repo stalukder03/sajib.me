@@ -6,8 +6,8 @@
 // get_header();
 
 $path = get_template_directory_uri();
-if($_SERVER['SERVER_NAME'] == 'sajib.com' ){
-    $path = 'http://sajib.com';
+if($_SERVER['SERVER_NAME'] == 'sajib.me' ){
+    $path = 'http://sajib.me';
 }
 ?> 
 <!DOCTYPE html>
