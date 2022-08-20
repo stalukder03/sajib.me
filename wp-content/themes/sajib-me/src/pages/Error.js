@@ -1,7 +1,13 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 
 const Error = () => {
+
+  
+  useEffect(()=>{
+    document.title = 'Sajib Talukder | 404 error page'
+  },[])
+
   return (
     <>
       {/* <header className="page-header">

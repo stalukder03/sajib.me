@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -54,6 +54,10 @@ const Contact = () => {
       submitBtn.current.removeAttribute('disabled')
     }
   }
+
+  useEffect(()=>{
+    document.title = 'Sajib Talukder | Contact'
+  },[])
 
   return (
     <>

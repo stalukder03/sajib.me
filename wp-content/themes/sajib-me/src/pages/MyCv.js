@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { FaPhone, FaMapMarker, FaRegEnvelope, FaGlobe, FaSkype  } from 'react-icons/fa';
 import {useGlobalContext} from '../context'
 
@@ -28,6 +28,10 @@ const MyCv = () => {
         break;
     }
   }
+  
+  useEffect(()=>{
+    document.title = 'Sajib Talukder | My CV'
+  },[])
 
   return (
     <div className="my-cv-page">

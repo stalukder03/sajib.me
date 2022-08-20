@@ -16,7 +16,7 @@ if($_SERVER['SERVER_NAME'] == 'sajib.com' ){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sajib React</title>
+    <title>Sajib Talukder | A WordPress Enthusiast | Blog</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $path; ?>/_react/css/style.css">
 </head>
 <body>

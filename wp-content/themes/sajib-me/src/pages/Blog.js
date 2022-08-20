@@ -1,10 +1,15 @@
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom';
-import React from 'react'
 import {useGlobalContext} from '../context'
 
 const Blog = () => {
     const {blogPosts} = useGlobalContext();
     // console.log(blogPosts)
+
+    useEffect(()=>{
+      document.title = 'Sajib Talukder | A WordPress Enthusiast | Blog'
+    },[])
+
     return (            
       blogPosts && blogPosts.map(post=>{
         // console.log(post)
