@@ -14,6 +14,8 @@
  * @since Twenty Fifteen 1.0
  */
 
+get_template_part( 'tmp', 'home' );
+return;
 get_header(); ?>
 
 	<div id="primary" class="content-area">
